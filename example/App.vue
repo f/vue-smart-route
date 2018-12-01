@@ -1,8 +1,8 @@
 <template>
   <div>
-    <input type="text" v-model='search' v-smart-results='results'>
+    <input type="text" v-model='query' v-smart-routes='routes'>
     <ul>
-      <li @click='result.handler' v-for='result in results' :key='result.name' v-html='result.title' />
+      <li @click='route.handler' v-for='route in routes' :key='route.name + Math.random()' v-html='route.title' />
     </ul>
     <hr>
     <h4>Router View:</h4>
@@ -14,8 +14,8 @@
 export default {
   data() {
     return {
-      search: '',
-      results: []
+      query: '',
+      routes: []
     }
   }
 }

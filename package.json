@@ -1,7 +1,7 @@
 {
   "name": "vue-smart-route",
   "version": "0.0.1",
-  "description": "Smart Search in vue-router",
+  "description": "Smart Router for vue-router",
   "main": "src/index.js",
   "scripts": {
     "test": "exit 0;",
