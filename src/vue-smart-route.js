@@ -1,5 +1,3 @@
-var Vue = require('vue');
-
 function flattenRoutes(routes = [], level = 0) {
   if (Array.isArray(routes)) {
     return routes.reduce(
@@ -60,9 +58,9 @@ function findSmartRoutes(value, context) {
   return [].concat(...matchingRoutes);
 }
 
-module.exports = {
-  install: function() {
-    Vue.default.directive('smart-routes', {
+export default {
+  install(Vue) {
+    Vue.directive('smart-routes', {
       bind: function(el, binding, vnode) {
         var model = vnode.data.directives.filter(d => d.name === 'model');
         if (!model.length) {

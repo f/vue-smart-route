@@ -2,9 +2,13 @@
   "name": "vue-smart-route",
   "version": "0.0.1",
   "description": "Smart Router for vue-router",
-  "main": "src/index.js",
+  "main": "dist/vue-smart-route.js",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "test": "exit 0;",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "precommit": "lint-staged",
     "dev": "poi example/main.js"
   },
@@ -23,10 +27,6 @@
     "url": "https://github.com/f/vue-smart-route/issues"
   },
   "homepage": "https://github.com/f/vue-smart-route#readme",
-  "peerDependencies": {
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.2"
-  },
   "lint-staged": {
     "src/**/*.js": [
       "prettier --single-quote --write",
@@ -37,11 +37,21 @@
       "git add"
     ]
   },
+  "peerDependencies": {
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.2"
+  },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.9.0",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
     "poi": "^10.2.11",
     "prettier": "^1.15.3",
-    "vue-router": "^3.0.2"
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
   }
 }
