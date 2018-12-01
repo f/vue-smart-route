@@ -9,7 +9,6 @@
   "scripts": {
     "test": "exit 0;",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "precommit": "lint-staged",
     "dev": "poi example/main.js"
   },
   "repository": {
@@ -53,5 +52,10 @@
     "prettier": "^1.15.3",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
