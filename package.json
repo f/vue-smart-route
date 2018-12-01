@@ -41,6 +41,7 @@
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
     "poi": "^10.2.11",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "vue-router": "^3.0.2"
   }
 }
