@@ -4,6 +4,7 @@
   "description": "Smart Router for vue-router",
   "main": "dist/vue-smart-route.js",
   "files": [
+    "dist",
     "src"
   ],
   "scripts": {
