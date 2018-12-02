@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{13:function(e,t,n){"use strict";n.r(t);var u=n(4),i=Object(u.a)({},function(){var e=this,t=e.$createElement;return(e._self._c||t)("p",[e._v("Sending mail to "+e._s(e.$route.query.email)+" with subject "+e._s(e.$route.query.subject))])},[],!1,null,null,null);i.options.__file="SendMail.vue";t.default=i.exports}}]);
+//# sourceMappingURL=4.ab4e7115.js.map
