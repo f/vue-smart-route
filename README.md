@@ -13,6 +13,17 @@ Vue Smart Route allows you to create a **query** system based on your **routes**
 yarn add vue-smart-route
 ```
 
+Then install it:
+
+```js
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueSmartRoute from 'vue-smart-route'
+
+Vue.use(VueRouter)
+Vue.use(VueSmartRoute)
+```
+
 ## Overview
 
 This is a well known route in **VueRouter**:
