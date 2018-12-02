@@ -1,6 +1,7 @@
 <template>
   <div>
     <input placeholder="search or run something..." type="text" v-model='query' v-smart-routes='routes'>
+    <p>You can write <b>about</b>, <b>search: {query}</b> or <b>a mail address and the subject</b></p>
     <ul>
       <li @click='route.handler' v-for='route in routes' :key='route.name + Math.random()' v-html='route.title' />
     </ul>

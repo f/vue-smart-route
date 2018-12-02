@@ -10,7 +10,8 @@
   "scripts": {
     "test": "exit 0;",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "poi example/main.js"
+    "dev": "poi example/main.js",
+    "gh-pages": "poi build --public-path . --out-dir=example-dist example/main.js && gh-pages -d example-dist"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "babel-loader": "^8.0.4",
     "cross-env": "^5.2.0",
     "eslint": "^5.9.0",
+    "gh-pages": "^2.0.1",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
     "poi": "^10.2.11",
