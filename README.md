@@ -63,6 +63,8 @@ Now, `routes` and `search` are connected eachother and `routes` will be **smartl
 
 <img src="resources/ss1.png" width="400"/>
 
+[▶︎ Try in Example](https://f.github.io/vue-smart-route)
+
 You can check `/example` to see a working example.
 
 ## Passing Parameters
@@ -87,6 +89,8 @@ Let's create a smart `/search` route:
 ```
 
 <img src="resources/ss2.png" width="400"/>
+
+[▶︎ Try in Example](https://f.github.io/vue-smart-route)
 
 When you click to the link, it will be navigated to the `/search?query=how+to+be+smart`.
 
@@ -122,6 +126,8 @@ You can simply make your search smarter by adding more logic:
 - `title` gets all the named matches and may include logic.
 
 <img src="resources/ss3.png" width="400"/>
+
+[▶︎ Try in Example](https://f.github.io/vue-smart-route)
 
 It lists all the routes.
 
