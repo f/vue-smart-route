@@ -7,6 +7,12 @@
 
 Vue Smart Route allows you to create a **query** system based on your **routes**. You can simply create a command input that creates **smart** actions.
 
+## Install
+
+```
+yarn add vue-smart-route
+```
+
 ## Overview
 
 This is a well known route in **VueRouter**:
