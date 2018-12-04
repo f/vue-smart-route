@@ -1,12 +1,20 @@
 <template>
-  <div>
-    <input placeholder="search or run something..." type="text" v-model='query' v-smart-routes='routes'>
-    <p>You can write <b>about</b>, <b>search: {query}</b> or <b>a mail address and the subject</b></p>
-    <ul>
-      <li @click='route.handler' v-for='route in routes' :key='route.name + Math.random()' v-html='route.title' />
-    </ul>
-    <hr>
-    <router-view></router-view>
+  <div id="app">
+    <header>
+      <input placeholder="search or run something..." type="text" v-model='query' v-smart-routes='routes'>
+      <p>You can write <b>about</b>, <b>search: {query}</b>, <b>user {username}</b>, <b>user {id}</b>, <b>user {username} {id}</b> or <b>a mail address and the subject</b></p>
+    </header>
+    <nav>
+      <ul v-if='routes.length'>
+        <li @click='route.handler' v-for='route in routes' :key='route.name + Math.random()' v-html='route.title' />
+      </ul>
+      <div v-else>
+        ...
+      </div>
+    </nav>
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -28,6 +36,29 @@ body {
 * {
   font-family: Avenir, sans-serif;
 }
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main";
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 0 20px;
+}
+
+header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+}
+
 input {
   font-size: 1.5rem;
   padding: 0.5rem;
@@ -42,27 +73,24 @@ ul {
   list-style: none;
   padding: 0;
   background-color: rgb(250, 250, 250);
-  border-radius: 5px;
-  padding: 10px;
 }
 
 li {
   display: block;
-  margin: 4px;
-  padding: 4px 10px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 4px;
+  border-bottom: 1px solid #eee;
 }
 
 li:hover {
-  background-color: pink;
+  background-color: #eee;
 }
 
 mark {
-  background-color: red;
-  color: #fff;
-  display: inline-block;
-  padding: 2px 5px;
-  border-radius: 3px;
+  background-color: transparent;
+  color: #222;
+  padding: 2px 0;
+  border-bottom: 4px dotted #888;
+  font-weight: bold;
 }
 </style>

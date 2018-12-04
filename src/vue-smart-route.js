@@ -1,8 +1,8 @@
 function flattenRoutes(routes = [], level = 0) {
   if (Array.isArray(routes)) {
     return routes.reduce(
-      (accumulator, { name, path, smart, tab, sidebar, children = [] }) => {
-        accumulator.push({ name, path, smart, tab, sidebar, children, level });
+      (accumulator, { name, path, smart, children = [] }) => {
+        accumulator.push({ name, path, smart, children, level });
         if (children.length) {
           accumulator = accumulator.concat(flattenRoutes(children, level + 1));
         }
@@ -11,6 +11,18 @@ function flattenRoutes(routes = [], level = 0) {
       []
     );
   }
+}
+
+function splitMatch(path, query) {
+  const matches = path.match(/(:[0-9a-z_\-]+)/gi);
+  if (!matches) return { query };
+
+  const params = matches.map(m => m.slice(1).trim());
+  const splitted = { query: {}, params: {} };
+  Object.keys(query).forEach(key => {
+    splitted[params.includes(key) ? 'params' : 'query'][key] = query[key];
+  });
+  return splitted;
 }
 
 function findSmartRoutes(value, context) {
@@ -28,7 +40,7 @@ function findSmartRoutes(value, context) {
       throw new Error('Smart routes must have matchers!');
     }
 
-    const next = (route = { name, path }) => context.$router.push(route);
+    const next = route => context.$router.push(route);
     if (!smart.handler) {
       smart.handler = next;
     }
@@ -44,7 +56,11 @@ function findSmartRoutes(value, context) {
       .map(match => {
         if (!match) return;
         const query = match.groups ? match.groups : match;
-        const route = { name, path, query };
+        const route = {
+          name,
+          path,
+          ...splitMatch(path, match.groups)
+        };
         return {
           title: smart.matcher
             .title(query, context)
