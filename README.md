@@ -211,40 +211,27 @@ According to this example, you will be able to navigate your user to the mail ap
 
 ## Async Route Generation (Autocomplete-like)
 
-**vue-smart-route** supports `async routes` that you can generate routes on demand, on runtime.
-
-To to that, you should use `async routes` method to matcher:
-
-Assume we have and endpoint `/users?q=fa` that responses an user array:
-
-```json
-[
-  { "id": 1, "username": "fatih" },
-  { "id": 2, "username": "fauda" }
-]
-```
+**vue-smart-route** supports `async routes` that you can generate routes on demand, on runtime. To to that, you should use `async routes` method to matcher:
 
 ```js
 smart: {
   matcher: {
-    search: [/users\s(?<query>.*)/],
-    async routes ({ query }) {
-      const users = await fetch('https://api.example.com/users')
-      const usersArray = await users.json()
-
-      return usersArray.map(({ id, username }) => {
-        return {
-          name: 'goToUser',
-          params: { id },
-          title: `Go to user *${username}*`
-        }
-      })
+    search: [/swapi\s(?<query>.*)/],
+    async routes({ query }) {
+      const people = await fetch(`https://swapi.co/api/people/?search=${encodeURIComponent(query)}`).then(r => r.json())
+      return people.results.map(character => ({
+        name: 'character',
+        title: `Go to character *${character.name}*`,
+        params: { url: character.url }
+      }))
     }
   }
 }
 ```
 
-This will help you to generate new routes dynamically.
+This will help you to generate new routes dynamically:
+
+<img src="resources/vue-smart-route-swapi.gif" width="600"/>
 
 ## i18n
 

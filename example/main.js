@@ -10,33 +10,30 @@ const router = new VueRouter({
   mode: 'hash',
   routes: [
     {
-      name: 'autocomplete',
-      path: '/autocomplete',
+      name: 'searchSw',
+      path: '/search-sw',
       component: () => import('./View.vue'),
       smart: {
         matcher: {
-          search: [/async\s(?<query>.*)/],
+          search: [/sw\s(?<query>.*)/],
           async routes({ query }) {
-            return new Promise(resolve => {
-              setTimeout(() => {
-                resolve([
-                  {
-                    name: 'viewUser',
-                    params: { username: query },
-                    title: 'Go to user *fkadev*'
-                  },
-                  {
-                    name: 'sendMail',
-                    query: { email: 'x@y.com', subject: 'hello!' },
-                    title: 'Send automail'
-                  },
-                  { name: 'goToUser', params: { id: 3 }, title: 'Go To user 2' }
-                ]);
-              }, 1000);
-            });
+            if (query.length < 3) return [];
+            const data = await fetch(
+              `https://swapi.co/api/people/?search=${encodeURIComponent(query)}`
+            ).then(r => r.json());
+            return data.results.map(person => ({
+              name: 'character',
+              title: `Go to character *${person.name}*`,
+              params: { id: +person.url.match(/\/(\d+)\//, '$1')[1] }
+            }));
           }
         }
       }
+    },
+    {
+      name: 'character',
+      path: '/character/:id',
+      component: () => import('./Character.vue')
     },
     {
       name: 'users',

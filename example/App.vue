@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <input placeholder="search or run something..." type="text" v-model='query' v-smart-routes='routes'>
-      <p>You can write <b>about</b>, <b>search: {query}</b>, <b>user {username}</b>, <b>user {id}</b>, <b>user {username} {id}</b> or <b>a mail address and the subject</b>, also <b>async {query}</b> will return an async response.</p>
+      <p>You can write <b>about</b>, <b>search: {query}</b>, <b>user {username}</b>, <b>user {id}</b>, <b>user {username} {id}</b> or <b>a mail address and the subject</b>, also <b>sw {query}</b> will search characters from SWAPI.</p>
     </header>
     <nav>
       <ul v-if='routes.length'>
