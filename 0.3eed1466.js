@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{11:function(e,n,t){},12:function(e,n,t){"use strict";var u=t(11);t.n(u).a},13:function(e,n,t){"use strict";t.r(n);var u={mounted:function(){console.log(this.$route)}},o=(t(12),t(4)),r=Object(o.a)(u,function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",[t("pre",[e._v(e._s(JSON.stringify({name:e.$route.name,path:e.$route.path,query:e.$route.query,params:e.$route.params},null,2)))])])},[],!1,null,null,null);r.options.__file="View.vue";n.default=r.exports}}]);
-//# sourceMappingURL=0.3eed1466.js.map
