@@ -7,7 +7,11 @@
 <img src="resources/vue-smart-route.gif" width="600"/>
 </p>
 
-Vue Smart Route allows you to create a **query** system based on your **routes**. You can simply create a command input that creates **smart** actions.
+Vue Smart Route allows you to create a **query** system based on your **routes**. You can simply create a command input that creates **smart** actions, both static routes and the **async ones**:
+
+<p align="center">
+<img src="resources/vue-smart-route-swapi.gif" width="600"/>
+</p>
 
 ## Install
 

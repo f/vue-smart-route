@@ -10,7 +10,7 @@
     "test": "exit 0;",
     "build": "poi src/vue-smart-route.js --prod --format umd --module-name VueSmartRoute --file-names.js vue-smart-route.js",
     "dev": "poi example/main.js --serve",
-    "gh-pages": "poi example/main.js --prod --public-url . --out-dir=example/dist && gh-pages -d example/dist"
+    "gh-pages": "poi example/main.js --prod --public-url ./ --out-dir=example/dist && gh-pages -d example/dist"
   },
   "repository": {
     "type": "git",
