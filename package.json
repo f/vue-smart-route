@@ -4,14 +4,13 @@
   "description": "Smart Router for vue-router",
   "main": "dist/vue-smart-route.js",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "test": "exit 0;",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "poi example/main.js",
-    "gh-pages": "poi build --public-path . --out-dir=example-dist example/main.js && gh-pages -d example-dist"
+    "build": "poi src/vue-smart-route.js --prod --format umd --module-name VueSmartRoute --file-names.js vue-smart-route.js",
+    "dev": "poi example/main.js --serve",
+    "gh-pages": "poi example/main.js --prod --public-url . --out-dir=example/dist && gh-pages -d example/dist"
   },
   "repository": {
     "type": "git",
@@ -53,11 +52,11 @@
     "gh-pages": "^2.0.1",
     "husky": "^1.2.0",
     "lint-staged": "^8.1.0",
-    "poi": "^10.2.11",
+    "poi": "^12.0.0-beta.6",
     "prettier": "^1.15.3",
+    "vue": "^2.5.17",
     "vue-router": "^3.0.2",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2"
+    "vue-template-compiler": "^2.5.17"
   },
   "husky": {
     "hooks": {
