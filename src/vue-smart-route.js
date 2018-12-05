@@ -25,7 +25,15 @@ function splitMatch(path, query) {
   return splitted;
 }
 
-function findSmartRoutes(value, context) {
+function buildRoute(route, title, smart, next, context) {
+  return {
+    ...route,
+    title: title.replace(/\*([^*]+)\*/g, '<mark>$1</mark>'),
+    handler: () => smart.handler(route, next, context)
+  };
+}
+
+async function findSmartRoutes(value, context) {
   const routes = context.$router.options.routes;
   const allRoutes = flattenRoutes(routes);
 
@@ -35,7 +43,7 @@ function findSmartRoutes(value, context) {
     .map(({ name, path, smart }) => ({ name, path, smart }));
 
   // Find Matching Routes with thte Value
-  const matchingRoutes = smartRoutes.map(({ name, path, smart }) => {
+  const matchingRoutes = smartRoutes.map(async ({ name, path, smart }) => {
     if (!smart.matcher) {
       throw new Error('Smart routes must have matchers!');
     }
@@ -52,8 +60,8 @@ function findSmartRoutes(value, context) {
       .map(matcher => value.toString().match(matcher))
       .filter(Boolean);
 
-    return matching
-      .map(match => {
+    const routes = await Promise.all(
+      matching.map(async match => {
         if (!match) return;
         const query = match.groups ? match.groups : match;
         const route = {
@@ -61,17 +69,22 @@ function findSmartRoutes(value, context) {
           path,
           ...splitMatch(path, match.groups)
         };
-        return {
-          title: smart.matcher
-            .title(query, context)
-            .replace(/\*([^*]+)\*/g, '<mark>$1</mark>'),
-          ...route,
-          handler: () => smart.handler(route, next, context)
-        };
+
+        if (typeof smart.matcher.routes === 'function') {
+          const routesToBuild = await smart.matcher.routes(query, context);
+          return routesToBuild.map(r =>
+            buildRoute(r, r.title, smart, next, context)
+          );
+        }
+
+        const title = smart.matcher.title(query, context);
+        return buildRoute(route, title, smart, next, context);
       })
-      .filter(Boolean);
+    );
+    return [].concat.apply([], routes).filter(Boolean);
   });
-  return [].concat(...matchingRoutes);
+  const doneRoutes = await Promise.all(matchingRoutes);
+  return [].concat(...doneRoutes);
 }
 
 export default {
@@ -84,8 +97,8 @@ export default {
             'An input with v-smart-routes directive must have v-model.'
           );
         }
-        vnode.context.$watch(model[0].expression, function(value) {
-          this[binding.expression] = findSmartRoutes(value, this);
+        vnode.context.$watch(model[0].expression, async function(value) {
+          this[binding.expression] = await findSmartRoutes(value, this);
         });
       }
     });

@@ -209,6 +209,43 @@ Let's make `email` example smarter by changing the navigation handler:
 
 According to this example, you will be able to navigate your user to the mail application.
 
+## Async Route Generation (Autocomplete-like)
+
+**vue-smart-route** supports `async routes` that you can generate routes on demand, on runtime.
+
+To to that, you should use `async routes` method to matcher:
+
+Assume we have and endpoint `/users?q=fa` that responses an user array:
+
+```json
+[
+  { "id": 1, "username": "fatih" },
+  { "id": 2, "username": "fauda" }
+]
+```
+
+```js
+smart: {
+  matcher: {
+    search: [/users\s(?<query>.*)/],
+    async routes ({ query }) {
+      const users = await fetch('https://api.example.com/users')
+      const usersArray = await users.json()
+
+      return usersArray.map(({ id, username }) => {
+        return {
+          name: 'goToUser',
+          params: { id },
+          title: `Go to user *${username}*`
+        }
+      })
+    }
+  }
+}
+```
+
+This will help you to generate new routes dynamically.
+
 ## i18n
 
 You can also use `i18n` features in `vue-smart-route`:

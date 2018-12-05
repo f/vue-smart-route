@@ -10,6 +10,35 @@ const router = new VueRouter({
   mode: 'hash',
   routes: [
     {
+      name: 'autocomplete',
+      path: '/autocomplete',
+      component: () => import('./View.vue'),
+      smart: {
+        matcher: {
+          search: [/async\s(?<query>.*)/],
+          async routes({ query }) {
+            return new Promise(resolve => {
+              setTimeout(() => {
+                resolve([
+                  {
+                    name: 'viewUser',
+                    params: { username: query },
+                    title: 'Go to user *fkadev*'
+                  },
+                  {
+                    name: 'sendMail',
+                    query: { email: 'x@y.com', subject: 'hello!' },
+                    title: 'Send automail'
+                  },
+                  { name: 'goToUser', params: { id: 3 }, title: 'Go To user 2' }
+                ]);
+              }, 1000);
+            });
+          }
+        }
+      }
+    },
+    {
       name: 'users',
       path: '/users',
       component: () => import('./View.vue'),
