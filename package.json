@@ -1,6 +1,6 @@
 {
   "name": "vue-smart-route",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Smart Router for vue-router",
   "main": "dist/vue-smart-route.js",
   "files": [
