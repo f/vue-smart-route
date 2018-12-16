@@ -61,7 +61,7 @@ routes: [
 ]
 ```
 
-Then, you need to use **`v-smart-routes`** directive to connect poosible routes you asked with **`search`**:
+Then, you need to use **`v-smart-routes`** directive to connect possible routes you asked with **`search`**:
 
 ```vue
 <template>
@@ -80,7 +80,7 @@ export default {
 </script>
 ```
 
-Now, `routes` and `search` are connected eachother and `routes` will be **smartly calculated** according to `search` property.
+Now, `routes` and `search` are connected each other and `routes` will be **smartly calculated** according to `search` property.
 
 > Following examples are styled. **`vue-smart-route` does not contain any style or component.**
 
@@ -215,7 +215,7 @@ According to this example, you will be able to navigate your user to the mail ap
 
 ## Async Route Generation (Autocomplete-like)
 
-**vue-smart-route** supports `async routes` that you can generate routes on demand, on runtime. To to that, you should use `async routes` method to matcher:
+**vue-smart-route** supports `async routes` that you can generate routes on demand, on runtime. To do that, you should use `async routes` method to matcher:
 
 ```js
 smart: {
