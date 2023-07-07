@@ -1,16 +1,15 @@
 {
   "name": "vue-smart-route",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Smart Router for vue-router",
-  "main": "dist/vue-smart-route.js",
+  "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
-    "test": "exit 0;",
-    "build": "poi src/vue-smart-route.js --prod --format umd --module-name VueSmartRoute --file-names.js vue-smart-route.js",
-    "dev": "poi example/main.js --serve",
-    "gh-pages": "poi example/main.js --prod --public-url ./ --out-dir=example/dist && gh-pages -d example/dist"
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -27,35 +26,21 @@
     "url": "https://github.com/f/vue-smart-route/issues"
   },
   "homepage": "https://github.com/f/vue-smart-route#readme",
-  "lint-staged": {
-    "src/**/*.js": [
-      "prettier --single-quote --write",
-      "git add"
-    ],
-    "example/**/*.js": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
-  },
   "peerDependencies": {
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.2"
+    "tslib": "^2.6.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "eslint": "^5.9.0",
-    "gh-pages": "^2.0.1",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
-    "poi": "^12.0.0-beta.6",
-    "prettier": "^1.15.3",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "dependencies": {
+    "rollup": "^3.26.2",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "typescript": "^5.1.6"
   }
 }
